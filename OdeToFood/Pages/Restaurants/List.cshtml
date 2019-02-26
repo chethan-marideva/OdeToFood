@@ -1,0 +1,51 @@
+﻿@page
+@model OdeToFood.Pages.Restaurants.ListModel
+@{
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<h1>Restaurants</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            @*<input type="search" class="form-control" value="" name="searchTerm"/>*@
+            <input type="search" class="form-control" asp-for="SearchTerm" />
+            <span class="input-group-btn">
+
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+@if (Model.ActionMessage != null) {<div class="alert alert-info"> @Model.ActionMessage</div>}
+
+@foreach(var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
+
+}
+
+@*<table class="table">
+
+    @foreach (var r in Model.Restaurants)
+    {
+        <tr>
+            <td>@r.Name</td>
+            <td>@r.Location</td>
+            <td>@r.Cusine</td>
+            <td>
+                <a asp-page="./Detail" asp-route-restaurantId="@r.Id" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-zoom-in"></span></a>
+                <a asp-page="./Edit" asp-route-restaurantId="@r.Id" class="btn btn-info btn-sm">  <span class="glyphicon glyphicon-edit"></span></a>
+                <a asp-page="./Delete" asp-route-restaurantId="@r.Id" class="btn btn-info btn-sm">  <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+
+
+    }
+</table>*@
+
+<a asp-page="./Edit" class="btn btn-primary">Add New</a>
+
